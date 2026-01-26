@@ -1,6 +1,5 @@
 package com.db.desafio.naruto01.model;
 
-import com.db.desafio.naruto01.enuns.TipoDeNinja;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +12,8 @@ import java.util.Locale;
 @Getter
 @Setter
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_de_ninja")
 @Table(name = "personagens")
 public abstract class Personagem {
     @Id
@@ -23,7 +24,6 @@ public abstract class Personagem {
     private String Aldeia;
     private List<String> jutsus = new ArrayList<>();
     private int chakra;
-    private TipoDeNinja tipoDeNinja;
 
     public void adicionarJutsu(String jutsu){
         jutsus.add(jutsu.toLowerCase(Locale.ROOT));
