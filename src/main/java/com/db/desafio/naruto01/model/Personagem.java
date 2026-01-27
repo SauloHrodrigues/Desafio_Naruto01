@@ -22,11 +22,23 @@ public abstract class Personagem {
     private String nome;
     private int idade;
     private String Aldeia;
-    private List<String> jutsus = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "personagem",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Jutsu> jutsus = new ArrayList<>();
     private int chakra;
 
-    public void adicionarJutsu(String jutsu){
-        jutsus.add(jutsu.toLowerCase(Locale.ROOT));
+    public void adicionarJutsu(Jutsu jutsu){
+        jutsus.add(jutsu);
+        jutsu.setPersonagem(this);
+
+    }
+
+    public void adicionarJutsu(List<Jutsu> jutsus){
+        this.jutsus.addAll(jutsus);
+        jutsus.forEach(this::adicionarJutsu);
     }
 
     public void aumentarChakra(int chakra){
