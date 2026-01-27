@@ -27,9 +27,11 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
 
 
     protected Personagem incluirJutsu(List<Jutsu> jutsus, Personagem personagem) {
+        personagem.getJutsus().clear();
         for (Jutsu jutsu : jutsus) {
             Jutsu novoJutsu = new Jutsu();
             novoJutsu.setNome(jutsu.getNome());
+            novoJutsu.setPersonagem(personagem);
             personagem.adicionarJutsu(novoJutsu);
         }
         return personagem;

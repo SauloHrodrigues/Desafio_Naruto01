@@ -1,5 +1,6 @@
 package com.db.desafio.naruto01.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,6 +28,7 @@ public abstract class Personagem {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<Jutsu> jutsus = new ArrayList<>();
     private int chakra;
 
