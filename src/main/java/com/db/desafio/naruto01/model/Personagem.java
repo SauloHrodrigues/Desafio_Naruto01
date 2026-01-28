@@ -1,5 +1,6 @@
 package com.db.desafio.naruto01.model;
 
+import com.db.desafio.naruto01.interfaces.TipoDeNinja;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +24,7 @@ public abstract class Personagem {
     private String nome;
     private int idade;
     private String Aldeia;
+    private int chakra;
     @OneToMany(
             mappedBy = "personagem",
             cascade = CascadeType.ALL,
@@ -30,7 +32,8 @@ public abstract class Personagem {
     )
     @JsonIgnore
     private List<Jutsu> jutsus = new ArrayList<>();
-    private int chakra;
+
+    public abstract TipoDeNinja getTipo();
 
     public void adicionarJutsu(Jutsu jutsu){
         jutsus.add(jutsu);

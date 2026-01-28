@@ -2,31 +2,23 @@ package com.db.desafio.naruto01.mapper;
 
 import com.db.desafio.naruto01.dtos.NovoPersonagem;
 import com.db.desafio.naruto01.dtos.PersonagemResponse;
-import com.db.desafio.naruto01.interfaces.TipoDeNinja;
-import com.db.desafio.naruto01.model.*;
-import org.mapstruct.*;
+import com.db.desafio.naruto01.model.NinjaDeGenjutsu;
+import com.db.desafio.naruto01.model.NinjaDeNinjutsu;
+import com.db.desafio.naruto01.model.NinjaDeTaijutsu;
+import com.db.desafio.naruto01.model.Personagem;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
-public abstract class PersonagemMapper {
-    @ObjectFactory
-    protected Personagem criar(NovoPersonagem dto) {
-        return switch (dto.tipoDeNinja()) {
-            case NINJUTSU -> new NinjaDeNinjutsu();
-            case TAIJUTSU -> new NinjaDeTaijutsu();
-            case GENJUTSU -> new NinjaDeGenjutsu();
-        };
-    }
+@Mapper(uses = JutsuMapper.class)
+public interface PersonagemMapper {
+
+    PersonagemMapper INSTANCE = Mappers.getMapper(PersonagemMapper.class);
+
     @Mapping(target = "jutsus", ignore = true)
-    public abstract Personagem toEntity(NovoPersonagem dto);
+    Personagem toUpdate(@MappingTarget Personagem personagem, NovoPersonagem dto);
 
-    @Mapping(target = "tipoDeNinja", expression = "java(extrairTipo(personagem))")
-    public abstract PersonagemResponse toResponse(Personagem personagem);
-
-    protected TipoDeNinja extrairTipo(Personagem personagem) {
-        if (personagem instanceof NinjaDeNinjutsu) return TipoDeNinja.NINJUTSU;
-        if (personagem instanceof NinjaDeTaijutsu) return TipoDeNinja.TAIJUTSU;
-        if (personagem instanceof NinjaDeGenjutsu) return TipoDeNinja.GENJUTSU;
-        throw new IllegalStateException("Tipo de ninja desconhecido");
-    }
-
+    @Mapping(source = "tipo", target = "tipoDeNinja")
+    PersonagemResponse toResponse(Personagem personagem);
 }

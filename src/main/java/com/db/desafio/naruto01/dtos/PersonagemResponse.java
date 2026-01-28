@@ -10,8 +10,8 @@ public record PersonagemResponse(
         String nome,
         int idade,
         String aldeia,
-        List<Jutsu> jutsus,
         TipoDeNinja tipoDeNinja,
-        int chakra
+        int chakra,
+        List<JutsuResponse> jutsus
 ) {
 }

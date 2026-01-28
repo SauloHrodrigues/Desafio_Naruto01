@@ -1,5 +1,7 @@
 package com.db.desafio.naruto01.controllers;
 
+import com.db.desafio.naruto01.dtos.JutsuResponse;
+import com.db.desafio.naruto01.dtos.NovoJutsu;
 import com.db.desafio.naruto01.dtos.NovoPersonagem;
 import com.db.desafio.naruto01.dtos.PersonagemResponse;
 import com.db.desafio.naruto01.service.PersonagemServiceI;
@@ -17,13 +19,13 @@ public class PersonagensController {
 
     @PostMapping
     public ResponseEntity<PersonagemResponse> cadastrar(@RequestBody NovoPersonagem dto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(serviceI.novoPersona(dto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(serviceI.novoPersonagem(dto));
     }
 
-    @PutMapping("/{id}/jutsu")
-    public ResponseEntity<Void> adicionaJutsu(@PathVariable Long id){
+    @PutMapping("/{id}/adicionar_jutsu")
+    public ResponseEntity<JutsuResponse> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
 
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(serviceI.adicionarNovoJutsu(id,novoJutsu));
     }
     @PutMapping("/{id}/chakra")
     public ResponseEntity<Void> adicionaChacra(@PathVariable Long id){

@@ -9,7 +9,7 @@ public record NovoPersonagem(
         String nome,
         int idade,
         String aldeia,
-        List<Jutsu> jutsus,
+        List<NovoJutsu> jutsus,
         TipoDeNinja tipoDeNinja,
         int chakra
 ) {}

@@ -1,6 +1,7 @@
 package com.db.desafio.naruto01.model;
 
 import com.db.desafio.naruto01.interfaces.Ninja;
+import com.db.desafio.naruto01.interfaces.TipoDeNinja;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -17,5 +18,10 @@ public class NinjaDeNinjutsu extends Personagem implements Ninja {
     public String desviar() {
         return " O personagem está desviando de um ataque usando " +
                 "sua habilidade em Ninjutsu. ";
+    }
+
+    @Override
+    public TipoDeNinja getTipo() {
+        return TipoDeNinja.NINJUTSU;
     }
 }
