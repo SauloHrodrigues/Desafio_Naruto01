@@ -1,9 +1,6 @@
 package com.db.desafio.naruto01.service.implementacao;
 
-import com.db.desafio.naruto01.dtos.JutsuResponse;
-import com.db.desafio.naruto01.dtos.NovoJutsu;
-import com.db.desafio.naruto01.dtos.NovoPersonagem;
-import com.db.desafio.naruto01.dtos.PersonagemResponse;
+import com.db.desafio.naruto01.dtos.*;
 import com.db.desafio.naruto01.exceptions.PersonagemNaoEncontradoException;
 import com.db.desafio.naruto01.exceptions.TipoNaoEncontradoException;
 import com.db.desafio.naruto01.mapper.JutsuMapper;
@@ -62,6 +59,12 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
     public String desviar(Long id) {
         Personagem personagem = buscarPersonagem(id);
         return personagem.desviar();
+    }
+
+    @Override
+    public PersonagemExibirResponse exibirPersonagem(Long id) {
+        Personagem personagem = buscarPersonagem(id);
+        return MAPPER.exibirPersonagem(personagem);
     }
 
 

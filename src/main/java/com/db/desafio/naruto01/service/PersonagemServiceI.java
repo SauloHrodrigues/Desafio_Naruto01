@@ -1,9 +1,6 @@
 package com.db.desafio.naruto01.service;
 
-import com.db.desafio.naruto01.dtos.JutsuResponse;
-import com.db.desafio.naruto01.dtos.NovoJutsu;
-import com.db.desafio.naruto01.dtos.NovoPersonagem;
-import com.db.desafio.naruto01.dtos.PersonagemResponse;
+import com.db.desafio.naruto01.dtos.*;
 
 public interface PersonagemServiceI {
 
@@ -17,4 +14,5 @@ public interface PersonagemServiceI {
 
     String desviar(Long id);
 
+    PersonagemExibirResponse exibirPersonagem(Long id);
 }

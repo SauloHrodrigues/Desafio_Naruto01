@@ -1,9 +1,6 @@
 package com.db.desafio.naruto01.controllers;
 
-import com.db.desafio.naruto01.dtos.JutsuResponse;
-import com.db.desafio.naruto01.dtos.NovoJutsu;
-import com.db.desafio.naruto01.dtos.NovoPersonagem;
-import com.db.desafio.naruto01.dtos.PersonagemResponse;
+import com.db.desafio.naruto01.dtos.*;
 import com.db.desafio.naruto01.service.PersonagemServiceI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,7 +19,7 @@ public class PersonagensController {
         return ResponseEntity.status(HttpStatus.CREATED).body(serviceI.novoPersonagem(dto));
     }
 
-    @PutMapping("/{id}/adicionar_jutsu")
+    @PutMapping("/{id}/jutsus")
     public ResponseEntity<JutsuResponse> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.adicionarNovoJutsu(id,novoJutsu));
     }
@@ -43,9 +40,8 @@ public class PersonagensController {
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.desviar(id));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Void> mostraPersonagem(@PathVariable Long id){
-
-        return null;
+    public ResponseEntity<PersonagemExibirResponse> mostraPersonagem(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(serviceI.exibirPersonagem(id));
     }
 
     /*
