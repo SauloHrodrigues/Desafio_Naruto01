@@ -1,8 +1,6 @@
 package com.db.desafio.naruto01.fixtures;
 
-import com.db.desafio.naruto01.dtos.NovoJutsu;
-import com.db.desafio.naruto01.dtos.NovoPersonagem;
-import com.db.desafio.naruto01.dtos.PersonagemResponse;
+import com.db.desafio.naruto01.dtos.*;
 import com.db.desafio.naruto01.exceptions.TipoNaoEncontradoException;
 import com.db.desafio.naruto01.interfaces.TipoDeNinja;
 import com.db.desafio.naruto01.model.*;
@@ -12,7 +10,7 @@ import java.util.List;
 
 public class PersonagemFixture {
     private static final Long ID = 1L;
-    private static final String NOME = "nome";
+    private static final String NOME = "Nome";
     private static final int IDADE = 18;
     private static final String ALDEIA = "aldeia";
     private static final int CHAKRA = 25;

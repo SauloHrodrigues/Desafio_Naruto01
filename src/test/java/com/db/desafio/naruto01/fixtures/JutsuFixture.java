@@ -1,5 +1,6 @@
 package com.db.desafio.naruto01.fixtures;
 
+import com.db.desafio.naruto01.dtos.JutsuResponse;
 import com.db.desafio.naruto01.dtos.NovoJutsu;
 import com.db.desafio.naruto01.interfaces.TipoDeNinja;
 import com.db.desafio.naruto01.model.Jutsu;
@@ -16,5 +17,8 @@ public class JutsuFixture {
 
    public static Jutsu toEntity(){
        return new Jutsu(ID,NOME,PERSONAGEM);
+   }
+   public static JutsuResponse toResponse(){
+       return new JutsuResponse(ID,NOME, PERSONAGEM.getId());
    }
 }

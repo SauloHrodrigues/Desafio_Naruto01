@@ -1,9 +1,6 @@
 package com.db.desafio.naruto01.service.implementacao;
 
-import com.db.desafio.naruto01.dtos.JutsuResponse;
-import com.db.desafio.naruto01.dtos.NovoJutsu;
-import com.db.desafio.naruto01.dtos.NovoPersonagem;
-import com.db.desafio.naruto01.dtos.PersonagemResponse;
+import com.db.desafio.naruto01.dtos.*;
 import com.db.desafio.naruto01.exceptions.PersonagemNaoEncontradoException;
 import com.db.desafio.naruto01.fixtures.JutsuFixture;
 import com.db.desafio.naruto01.fixtures.PersonagemFixture;
@@ -144,4 +141,22 @@ class PersonagemSeviceImplTest {
         assertEquals(" O personagem: "+personagem.getNome()+" está desviando de um ataque usando " +
                 "sua habilidade em "+personagem.getTipo()+".",mensagem);
     }
+
+    @Test
+    @DisplayName("Deve retornar informaçoes do personagem, sem id nem tipo")
+    void deveRetornarInformaçoesDoPersonagemSemIdNemTipo(){
+        Personagem personagem = PersonagemFixture.entity(TipoDeNinja.NINJUTSU);
+        Long id = personagem.getId();
+
+        when(repository.findById(id)).thenReturn(Optional.of(personagem));
+
+        PersonagemExibirResponse resposta = service.exibirPersonagem(id);
+
+        assertEquals(personagem.getNome(),resposta.nome());
+        assertEquals(personagem.getIdade(),resposta.idade());
+        assertEquals(personagem.getAldeia(),resposta.aldeia());
+        assertEquals(personagem.getJutsus().size(),resposta.jutsus().size());
+        assertEquals(personagem.getChakra(),resposta.chakra());
+    }
+
 }
