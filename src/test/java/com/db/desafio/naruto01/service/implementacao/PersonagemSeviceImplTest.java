@@ -116,4 +116,32 @@ class PersonagemSeviceImplTest {
         verify(repository).save(personagem);
 
     }
+
+    @Test
+    @DisplayName("Deve retornar mensagem ao atacar de jutsu")
+    void deveRetornarMensagemAoAtacarDeJutsu(){
+        Personagem personagem = PersonagemFixture.entity(TipoDeNinja.TAIJUTSU);
+        Long id= personagem.getId();
+
+        when(repository.findById(id)).thenReturn(Optional.of(personagem));
+
+        String mensagem = service.usarJutsu(id);
+
+        assertEquals("O personagem: "+personagem.getNome()+" esta usando um golpe de "+
+                personagem.getTipo()+".",mensagem);
+    }
+
+    @Test
+    @DisplayName("Deve retornar mensagem ao desviar de um ataque")
+    void deveRetornarMensagemAoDesviar(){
+        Personagem personagem = PersonagemFixture.entity(TipoDeNinja.TAIJUTSU);
+        Long id= personagem.getId();
+
+        when(repository.findById(id)).thenReturn(Optional.of(personagem));
+
+        String mensagem = service.desviar(id);
+
+        assertEquals(" O personagem: "+personagem.getNome()+" está desviando de um ataque usando " +
+                "sua habilidade em "+personagem.getTipo()+".",mensagem);
+    }
 }
