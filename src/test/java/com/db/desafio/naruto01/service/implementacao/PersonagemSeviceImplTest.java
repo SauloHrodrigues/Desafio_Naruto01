@@ -5,8 +5,7 @@ import com.db.desafio.naruto01.exceptions.PersonagemNaoEncontradoException;
 import com.db.desafio.naruto01.fixtures.JutsuFixture;
 import com.db.desafio.naruto01.fixtures.PersonagemFixture;
 import com.db.desafio.naruto01.interfaces.TipoDeNinja;
-import com.db.desafio.naruto01.model.Jutsu;
-import com.db.desafio.naruto01.model.Personagem;
+import com.db.desafio.naruto01.model.*;
 import com.db.desafio.naruto01.repository.PersonagemRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -159,4 +158,19 @@ class PersonagemSeviceImplTest {
         assertEquals(personagem.getChakra(),resposta.chakra());
     }
 
+    @Test
+    @DisplayName("Deve criar personagem de acordo com o tipo de ninja")
+    void deveCriarPersonagemDeAcordoComOTipoDeNinja(){
+        NovoPersonagem genjutsu = PersonagemFixture.request(TipoDeNinja.GENJUTSU);
+        NovoPersonagem ninjutsu = PersonagemFixture.request(TipoDeNinja.NINJUTSU);
+        NovoPersonagem taijutsu = PersonagemFixture.request(TipoDeNinja.TAIJUTSU);
+
+        Personagem respostaGenjutsu = service.criar(genjutsu);
+        Personagem respostaNinjutsu = service.criar(ninjutsu);
+        Personagem respostaTaijutsu = service.criar(taijutsu);
+
+        assertTrue(respostaGenjutsu instanceof NinjaDeGenjutsu);
+        assertTrue(respostaNinjutsu instanceof NinjaDeNinjutsu);
+        assertTrue(respostaTaijutsu instanceof NinjaDeTaijutsu);
+    }
 }
