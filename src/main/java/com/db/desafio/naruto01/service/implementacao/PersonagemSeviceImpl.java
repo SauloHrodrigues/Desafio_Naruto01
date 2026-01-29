@@ -38,9 +38,13 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
 
     @Override
     public JutsuResponse adicionarNovoJutsu(Long id, NovoJutsu novo) {
-//        Personagem personagem = buscarPersonagem(id);
-
-        return null;// jutsuMapper.toResponse(jutsu);
+        Personagem personagem = buscarPersonagem(id);
+        Jutsu jutsu = MAPPER_JUTSU.toEntity(novo);
+        personagem.adicionarJutsu(jutsu);
+        personagem = repository.save(personagem);
+        Jutsu jutsuSalvo = personagem.getJutsus().get(
+                personagem.getJutsus().size()-1);
+        return MAPPER_JUTSU.toResponse(jutsuSalvo);
     }
 
     protected Personagem buscarPersonagem(Long id) {

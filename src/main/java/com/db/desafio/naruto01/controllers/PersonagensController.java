@@ -24,9 +24,9 @@ public class PersonagensController {
 
     @PutMapping("/{id}/adicionar_jutsu")
     public ResponseEntity<JutsuResponse> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
-
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.adicionarNovoJutsu(id,novoJutsu));
     }
+
     @PutMapping("/{id}/chakra")
     public ResponseEntity<Void> adicionaChacra(@PathVariable Long id){
 
