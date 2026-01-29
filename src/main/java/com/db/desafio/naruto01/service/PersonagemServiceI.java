@@ -10,4 +10,6 @@ public interface PersonagemServiceI {
     PersonagemResponse novoPersonagem(NovoPersonagem dto);
 
     JutsuResponse adicionarNovoJutsu(Long id, NovoJutsu novo);
+
+    void aumentarChakra(Long id, int chakras);
 }

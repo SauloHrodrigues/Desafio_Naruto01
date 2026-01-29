@@ -42,9 +42,14 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
         Jutsu jutsu = MAPPER_JUTSU.toEntity(novo);
         personagem.adicionarJutsu(jutsu);
         personagem = repository.save(personagem);
-        Jutsu jutsuSalvo = personagem.getJutsus().get(
-                personagem.getJutsus().size()-1);
+        Jutsu jutsuSalvo = personagem.getJutsus().getLast();
         return MAPPER_JUTSU.toResponse(jutsuSalvo);
+    }
+
+    public void aumentarChakra(Long id, int chakras) {
+        Personagem personagem = buscarPersonagem(id);
+        personagem.aumentarChakra(chakras);
+        repository.save(personagem);
     }
 
     protected Personagem buscarPersonagem(Long id) {

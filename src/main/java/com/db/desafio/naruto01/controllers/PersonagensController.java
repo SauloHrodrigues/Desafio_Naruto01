@@ -27,10 +27,10 @@ public class PersonagensController {
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.adicionarNovoJutsu(id,novoJutsu));
     }
 
-    @PutMapping("/{id}/chakra")
-    public ResponseEntity<Void> adicionaChacra(@PathVariable Long id){
-
-        return null;
+    @PutMapping("/{id}/chakras")
+    public ResponseEntity<Void> adicionaChakra(@PathVariable Long id, @RequestParam int chakras){
+        serviceI.aumentarChakra(id,chakras);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping("/{id}/atacar")
