@@ -98,4 +98,22 @@ class PersonagemSeviceImplTest {
                 exception.getMessage());
         verify(repository).findById(id);
     }
+
+    @Test
+    @DisplayName("Deve aumentar a quantidade de chakras de um personangem cadastrado")
+    void  deveAumentarQuantidadeDeChakrasDeUmPersonagemCadastrado(){
+        Personagem personagem = PersonagemFixture.entity(TipoDeNinja.TAIJUTSU);
+        Long idPersonagem = personagem.getId();
+        int chakraInicial = personagem.getChakra();
+        int chakraAumentar = 100;
+
+        when(repository.findById(idPersonagem)).thenReturn(Optional.of(personagem));
+
+        service.aumentarChakra(idPersonagem,chakraAumentar);
+
+        assertEquals(chakraInicial+chakraAumentar, personagem.getChakra());
+        verify(repository).findById(idPersonagem);
+        verify(repository).save(personagem);
+
+    }
 }
