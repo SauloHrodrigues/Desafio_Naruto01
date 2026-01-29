@@ -33,16 +33,14 @@ public class PersonagensController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/{id}/atacar")
-    public ResponseEntity<Void> atacar(@PathVariable Long id){
-
-        return null;
+    @GetMapping("/{id}/atacar")
+    public ResponseEntity<String> usarJutsu(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(serviceI.usarJutsu(id));
     }
 
-    @PutMapping("/{id}/defender")
-    public ResponseEntity<Void> defender(@PathVariable Long id){
-
-        return null;
+    @GetMapping("/{id}/desviar")
+    public ResponseEntity<String> desviar(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(serviceI.desviar(id));
     }
     @GetMapping("/{id}")
     public ResponseEntity<Void> mostraPersonagem(@PathVariable Long id){

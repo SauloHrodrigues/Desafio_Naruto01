@@ -7,17 +7,17 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("NINJUTSU")
-public class NinjaDeNinjutsu extends Personagem implements Ninja {
+public class NinjaDeNinjutsu extends Personagem  {
 
     @Override
     public String usarJutsu() {
-        return "O personagem esta usando um golpe de Ninjutsu";
+        return "O personagem: "+getNome()+" esta usando um golpe de "+getTipo()+".";
     }
 
     @Override
     public String desviar() {
-        return " O personagem está desviando de um ataque usando " +
-                "sua habilidade em Ninjutsu. ";
+        return " O personagem: "+getNome()+" está desviando de um ataque usando " +
+                "sua habilidade em "+getTipo()+".";
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.db.desafio.naruto01.model;
 
+import com.db.desafio.naruto01.interfaces.Ninja;
 import com.db.desafio.naruto01.interfaces.TipoDeNinja;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -17,7 +18,7 @@ import java.util.Locale;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_de_ninja")
 @Table(name = "personagens")
-public abstract class Personagem {
+public abstract class Personagem implements Ninja {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

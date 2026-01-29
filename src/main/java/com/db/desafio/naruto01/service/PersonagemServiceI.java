@@ -12,4 +12,9 @@ public interface PersonagemServiceI {
     JutsuResponse adicionarNovoJutsu(Long id, NovoJutsu novo);
 
     void aumentarChakra(Long id, int chakras);
+
+    String usarJutsu(Long id);
+
+    String desviar(Long id);
+
 }

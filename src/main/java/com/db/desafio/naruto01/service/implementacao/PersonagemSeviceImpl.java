@@ -52,6 +52,19 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
         repository.save(personagem);
     }
 
+    @Override
+    public String usarJutsu(Long id) {
+        Personagem personagem = buscarPersonagem(id);
+        return personagem.usarJutsu();
+    }
+
+    @Override
+    public String desviar(Long id) {
+        Personagem personagem = buscarPersonagem(id);
+        return personagem.desviar();
+    }
+
+
     protected Personagem buscarPersonagem(Long id) {
         return repository.findById(id).orElseThrow(() -> new PersonagemNaoEncontradoException(
                 "Não há personagem cadastrado no banco com ID:'" + id + "."
