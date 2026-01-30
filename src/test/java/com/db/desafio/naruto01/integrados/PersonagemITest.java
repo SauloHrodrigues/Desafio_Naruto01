@@ -67,7 +67,7 @@ public class PersonagemITest {
         int chakras = 100;
 
         ResponseEntity<Void> resposta = template.exchange(
-                "/personagens/{id}/chakras?chakras={chakras}",
+                "/personagens/{id}/chakras?chakra={chakras}",
                 HttpMethod.PUT,
                 HttpEntity.EMPTY,
                 Void.class,

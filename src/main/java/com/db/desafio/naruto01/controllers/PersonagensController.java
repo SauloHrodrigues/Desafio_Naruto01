@@ -1,5 +1,6 @@
 package com.db.desafio.naruto01.controllers;
 
+import com.db.desafio.naruto01.controllers.swagger_i.PersonagemControllerSwaggerI;
 import com.db.desafio.naruto01.dtos.*;
 import com.db.desafio.naruto01.service.PersonagemServiceI;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/personagens")
-public class PersonagensController {
+public class PersonagensController implements PersonagemControllerSwaggerI {
 
     private final PersonagemServiceI serviceI;
 
@@ -25,8 +26,8 @@ public class PersonagensController {
     }
 
     @PutMapping("/{id}/chakras")
-    public ResponseEntity<Void> adicionaChakra(@PathVariable Long id, @RequestParam int chakras){
-        serviceI.aumentarChakra(id,chakras);
+    public ResponseEntity<Void> adicionaChakra(@PathVariable Long id, @RequestParam int chakra){
+        serviceI.aumentarChakra(id, chakra);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

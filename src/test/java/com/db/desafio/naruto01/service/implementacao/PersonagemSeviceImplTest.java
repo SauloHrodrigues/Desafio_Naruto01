@@ -137,7 +137,7 @@ class PersonagemSeviceImplTest {
 
         String mensagem = service.desviar(id);
 
-        assertEquals(" O personagem: "+personagem.getNome()+" está desviando de um ataque usando " +
+        assertEquals("O personagem: "+personagem.getNome()+" está desviando de um ataque usando " +
                 "sua habilidade em "+personagem.getTipo()+".",mensagem);
     }
 
@@ -169,8 +169,8 @@ class PersonagemSeviceImplTest {
         Personagem respostaNinjutsu = service.criar(ninjutsu);
         Personagem respostaTaijutsu = service.criar(taijutsu);
 
-        assertTrue(respostaGenjutsu instanceof NinjaDeGenjutsu);
-        assertTrue(respostaNinjutsu instanceof NinjaDeNinjutsu);
-        assertTrue(respostaTaijutsu instanceof NinjaDeTaijutsu);
+        assertInstanceOf(NinjaDeGenjutsu.class, respostaGenjutsu);
+        assertInstanceOf(NinjaDeNinjutsu.class, respostaNinjutsu);
+        assertInstanceOf(NinjaDeTaijutsu.class, respostaTaijutsu);
     }
 }
