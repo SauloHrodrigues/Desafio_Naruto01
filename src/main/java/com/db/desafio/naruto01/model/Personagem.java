@@ -39,12 +39,6 @@ public abstract class Personagem implements Ninja {
     public void adicionarJutsu(Jutsu jutsu){
         jutsus.add(jutsu);
         jutsu.setPersonagem(this);
-
-    }
-
-    public void adicionarJutsu(List<Jutsu> jutsus){
-        this.jutsus.addAll(jutsus);
-        jutsus.forEach(this::adicionarJutsu);
     }
 
     public void aumentarChakra(int chakra){

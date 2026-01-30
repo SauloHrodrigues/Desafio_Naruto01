@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PersonagemRepository extends JpaRepository<Personagem,Long> {
+public interface PersonagemRepository extends JpaRepository<Personagem, Long> {
 
     @Query("select p from Personagem p where type(p) = NinjaDeNinjutsu")
     List<Personagem> buscarNinjasDeNinjutsu();

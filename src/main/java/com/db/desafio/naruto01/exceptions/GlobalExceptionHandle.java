@@ -16,5 +16,4 @@ public class GlobalExceptionHandle {
     public ResponseEntity<Object> handlerTipoNaoEncontradoException(TipoNaoEncontradoException mensagem) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body( mensagem.getMessage());
     }
-
 }

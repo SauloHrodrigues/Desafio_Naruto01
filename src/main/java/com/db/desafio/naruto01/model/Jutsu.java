@@ -21,5 +21,4 @@ public class Jutsu {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personagem_id")
     private Personagem personagem;
-
 }

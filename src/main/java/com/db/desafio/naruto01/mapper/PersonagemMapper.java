@@ -25,7 +25,5 @@ public interface PersonagemMapper {
     @Mapping(source = "tipo", target = "tipoDeNinja")
     PersonagemResponse toResponse(Personagem personagem);
 
-
     PersonagemExibirResponse exibirPersonagem(Personagem personagem);
-
 }

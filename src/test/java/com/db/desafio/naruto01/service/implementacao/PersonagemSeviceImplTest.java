@@ -76,8 +76,6 @@ class PersonagemSeviceImplTest {
         assertNotNull(resposta.id());
         assertEquals(request.nomeDoJutsu().toLowerCase(), resposta.nomeDoJutsu());
         assertEquals(1L, resposta.personagemId());
-
-
     }
 
     @Test

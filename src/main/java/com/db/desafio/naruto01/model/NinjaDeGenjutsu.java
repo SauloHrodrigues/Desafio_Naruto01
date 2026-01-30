@@ -1,6 +1,5 @@
 package com.db.desafio.naruto01.model;
 
-import com.db.desafio.naruto01.interfaces.Ninja;
 import com.db.desafio.naruto01.interfaces.TipoDeNinja;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

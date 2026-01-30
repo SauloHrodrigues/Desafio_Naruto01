@@ -18,7 +18,6 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
     private final PersonagemMapper MAPPER = PersonagemMapper.INSTANCE;
     private static final JutsuMapper MAPPER_JUTSU = JutsuMapper.INSTANCE;
 
-
     @Override
     public PersonagemResponse novoPersonagem(NovoPersonagem dto) {
         Personagem novo = criar(dto);
@@ -67,13 +66,11 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
         return MAPPER.exibirPersonagem(personagem);
     }
 
-
     protected Personagem buscarPersonagem(Long id) {
         return repository.findById(id).orElseThrow(() -> new PersonagemNaoEncontradoException(
                 "Não há personagem cadastrado no banco com ID:'" + id + "."
         ));
     }
-
 
     protected Personagem criar(NovoPersonagem dto) {
         Personagem personagem;
@@ -82,9 +79,9 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
             case TAIJUTSU -> personagem = new NinjaDeTaijutsu();
             case GENJUTSU -> personagem = new NinjaDeGenjutsu();
             default -> throw new TipoNaoEncontradoException("Não é possivel cadastrar " +
-                    "um ninja do tipo: '" + dto.tipoDeNinja()+"'.");
+                    "um ninja do tipo: '" + dto.tipoDeNinja() + "'.");
         }
-        personagem = MAPPER.toUpdate(personagem,dto);
+        personagem = MAPPER.toUpdate(personagem, dto);
         return personagem;
     }
 }
