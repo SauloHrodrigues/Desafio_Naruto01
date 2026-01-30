@@ -19,7 +19,7 @@ public class PersonagensController {
         return ResponseEntity.status(HttpStatus.CREATED).body(serviceI.novoPersonagem(dto));
     }
 
-    @PutMapping("/{id}/jutsus")
+    @PostMapping("/{id}/jutsus")
     public ResponseEntity<JutsuResponse> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.adicionarNovoJutsu(id,novoJutsu));
     }
@@ -39,16 +39,9 @@ public class PersonagensController {
     public ResponseEntity<String> desviar(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.desviar(id));
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<PersonagemExibirResponse> mostraPersonagem(@PathVariable Long id){
+    public ResponseEntity<PersonagemExibirResponse> mostraPersonagem(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.exibirPersonagem(id));
     }
-
-    /*
-
-    específica.
-    • Um método que permita exibir todas as informações do personagem (nome,
-    idade, aldeia, jutsus e chakra).
-     */
-
 }

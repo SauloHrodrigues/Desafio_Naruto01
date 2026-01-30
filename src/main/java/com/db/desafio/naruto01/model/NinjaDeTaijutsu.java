@@ -16,7 +16,7 @@ public class NinjaDeTaijutsu extends Personagem {
 
     @Override
     public String desviar() {
-        return " O personagem: "+getNome()+" está desviando de um ataque usando sua habilidade em "+getTipo()+".";
+        return "O personagem: "+getNome()+" está desviando de um ataque usando sua habilidade em "+getTipo()+".";
     }
 
     @Override
