@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
+import java.util.Map;
+
 @Schema(description = "DTO para cadastro de um novo jutsu")
 public record NovoPersonagem(
 
@@ -23,9 +25,11 @@ public record NovoPersonagem(
         @Schema(description = "Aldeia do personagem", example = "Konoha", requiredMode = Schema.RequiredMode.REQUIRED)
         String aldeia,
 
-        @Valid
-        @Schema(description = "Lista de jutsus do personagem", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-        List<NovoJutsu> jutsus,
+        @Schema(
+                description = "Mapa de jutsus do personagem (chave = nome do jutsu, valor = dano máximo)",
+                requiredMode = Schema.RequiredMode.NOT_REQUIRED
+        )
+        Map<String, Integer> jutsus,
 
         @NotNull(message = "O tipo de ninja é campo de preenchimento obrigatório")
         @Schema(description = "Tipo de ninja", example = "NINJATAIJUTSU", requiredMode = Schema.RequiredMode.REQUIRED)

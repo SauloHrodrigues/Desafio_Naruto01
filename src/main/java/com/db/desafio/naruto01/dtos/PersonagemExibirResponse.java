@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
+import java.util.Map;
+
 @Schema(description = "Resposta com os dados do personagem cadastrado")
 public record PersonagemExibirResponse(
         @NotBlank
@@ -24,7 +26,10 @@ public record PersonagemExibirResponse(
         @Schema(description = "Quantidade de chakra do personagem", example = "100", requiredMode = Schema.RequiredMode.REQUIRED)
         int chakra,
 
-        @Valid
-        @Schema(description = "Lista de jutsus do personagem", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-        List<JutsuResponse> jutsus
+        @Schema(
+                description = "Mapa de jutsus do personagem (chave = nome do jutsu, valor = dano máximo)",
+                requiredMode = Schema.RequiredMode.NOT_REQUIRED
+        )
+        Map<String, Integer> jutsus
+
 ) {}
