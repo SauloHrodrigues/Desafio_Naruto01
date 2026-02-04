@@ -2,13 +2,11 @@ package com.db.desafio.naruto01.model;
 
 import com.db.desafio.naruto01.interfaces.Ninja;
 import com.db.desafio.naruto01.interfaces.TipoDeNinja;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,21 +22,21 @@ public abstract class Personagem implements Ninja {
     private Long id;
     private String nome;
     private int idade;
-    private String Aldeia;
+    private String aldeia;
     private int chakra;
-    @OneToMany(
-            mappedBy = "personagem",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+    @ElementCollection
+    @CollectionTable(
+            name = "personagem_jutsus",
+            joinColumns = @JoinColumn(name = "personagem_id")
     )
-    @JsonIgnore
-    private List<Jutsu> jutsus = new ArrayList<>();
+    @MapKeyColumn(name = "nome_jutsu")
+    @Column(name = "dano_maximo")
+    private Map<String,Integer> jutsus = new HashMap<>();
 
     public abstract TipoDeNinja getTipo();
 
-    public void adicionarJutsu(Jutsu jutsu){
-        jutsus.add(jutsu);
-        jutsu.setPersonagem(this);
+    public void adicionarJutsu(String nome, Integer danoMaximo){
+        this.jutsus.put(nome, danoMaximo);
     }
 
     public void aumentarChakra(int chakra){
@@ -51,7 +49,7 @@ public abstract class Personagem implements Ninja {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", idade=" + idade +
-                ", Aldeia='" + Aldeia + '\'' +
+                ", Aldeia='" + aldeia + '\'' +
                 ", jutsus=" + jutsus +
                 ", chakra=" + chakra +
                 '}';
