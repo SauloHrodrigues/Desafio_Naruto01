@@ -1,7 +1,6 @@
 package com.db.desafio.naruto01.dtos;
 
-import com.db.desafio.naruto01.interfaces.TipoDeNinja;
-import com.db.desafio.naruto01.model.Jutsu;
+import com.db.desafio.naruto01.enuns.TipoDeNinja;
 import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;

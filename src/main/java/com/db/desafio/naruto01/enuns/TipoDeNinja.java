@@ -1,4 +1,4 @@
-package com.db.desafio.naruto01.interfaces;
+package com.db.desafio.naruto01.enuns;
 
 public enum TipoDeNinja {
     GENJUTSU("Genjutsu"),
