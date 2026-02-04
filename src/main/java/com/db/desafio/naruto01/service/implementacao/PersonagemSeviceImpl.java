@@ -3,7 +3,6 @@ package com.db.desafio.naruto01.service.implementacao;
 import com.db.desafio.naruto01.dtos.*;
 import com.db.desafio.naruto01.exceptions.PersonagemNaoEncontradoException;
 import com.db.desafio.naruto01.exceptions.TipoNaoEncontradoException;
-import com.db.desafio.naruto01.mapper.JutsuMapper;
 import com.db.desafio.naruto01.mapper.PersonagemMapper;
 import com.db.desafio.naruto01.model.*;
 import com.db.desafio.naruto01.repository.PersonagemRepository;
@@ -16,30 +15,22 @@ import org.springframework.stereotype.Service;
 public class PersonagemSeviceImpl implements PersonagemServiceI {
     private final PersonagemRepository repository;
     private final PersonagemMapper MAPPER = PersonagemMapper.INSTANCE;
-    private static final JutsuMapper MAPPER_JUTSU = JutsuMapper.INSTANCE;
 
     @Override
     public PersonagemResponse novoPersonagem(NovoPersonagem dto) {
         Personagem novo = criar(dto);
-
-        for (NovoJutsu novoJutsu : dto.jutsus()) {
-            Jutsu jutsu = MAPPER_JUTSU.toEntity(novoJutsu);
-            novo.adicionarJutsu(jutsu);
+        if (dto.jutsus() != null) {
+            dto.jutsus().forEach(novo::adicionarJutsu);
         }
-
         Personagem salvo = repository.save(novo);
-
         return MAPPER.toResponse(salvo);
     }
 
     @Override
-    public JutsuResponse adicionarNovoJutsu(Long id, NovoJutsu novo) {
+    public void adicionarNovoJutsu(Long id, NovoJutsu novo) {
         Personagem personagem = buscarPersonagem(id);
-        Jutsu jutsu = MAPPER_JUTSU.toEntity(novo);
-        personagem.adicionarJutsu(jutsu);
-        personagem = repository.save(personagem);
-        Jutsu jutsuSalvo = personagem.getJutsus().getLast();
-        return MAPPER_JUTSU.toResponse(jutsuSalvo);
+        personagem.adicionarJutsu(novo.nome(), novo.danoMaximo());
+        repository.save(personagem);
     }
 
     public void aumentarChakra(Long id, int chakras) {
@@ -63,6 +54,7 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
     @Override
     public PersonagemExibirResponse exibirPersonagem(Long id) {
         Personagem personagem = buscarPersonagem(id);
+
         return MAPPER.exibirPersonagem(personagem);
     }
 

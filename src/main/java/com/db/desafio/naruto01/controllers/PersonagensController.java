@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/personagens")
-public class PersonagensController implements PersonagemControllerSwaggerI {
+public class PersonagensController {//implements PersonagemControllerSwaggerI {
 
     private final PersonagemServiceI serviceI;
 
@@ -21,8 +21,9 @@ public class PersonagensController implements PersonagemControllerSwaggerI {
     }
 
     @PostMapping("/{id}/jutsus")
-    public ResponseEntity<JutsuResponse> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
-        return ResponseEntity.status(HttpStatus.OK).body(serviceI.adicionarNovoJutsu(id,novoJutsu));
+    public ResponseEntity<Void> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
+        serviceI.adicionarNovoJutsu(id,novoJutsu);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PutMapping("/{id}/chakras")

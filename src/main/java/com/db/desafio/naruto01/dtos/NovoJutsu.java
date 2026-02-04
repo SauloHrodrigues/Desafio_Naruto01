@@ -9,5 +9,6 @@ public record NovoJutsu(
         @Schema(description = "Nome do jutsu a ser cadastrado",example = "Chidori",
                 requiredMode = Schema.RequiredMode.REQUIRED, maxLength = 100)
         @NotBlank(message = "O nome do jutsu é campo de preenchimento obrigatório")
-        String nomeDoJutsu
+        String nome,
+        int danoMaximo
 ) {}
