@@ -10,15 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "jutsus")
 public class Jutsu {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "personagem_id")
-    private Personagem personagem;
+    private int dano;
+    private int consumoDeChakra;
 }
