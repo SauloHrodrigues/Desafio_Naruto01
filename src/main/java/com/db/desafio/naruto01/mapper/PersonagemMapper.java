@@ -13,7 +13,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = JutsuMapper.class)
+@Mapper
 public interface PersonagemMapper {
 
     PersonagemMapper INSTANCE = Mappers.getMapper(PersonagemMapper.class);
