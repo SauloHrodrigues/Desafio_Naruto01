@@ -9,17 +9,6 @@ import jakarta.persistence.Entity;
 public class NinjaDeGenjutsu extends Personagem  {
 
     @Override
-    public String usarJutsu() {
-        return "O personagem: "+getNome()+" esta usando um golpe de "+getTipo()+".";
-    }
-
-    @Override
-    public String desviar() {
-        return "O personagem: "+getNome()+" está desviando de um ataque usando " +
-                "sua habilidade em "+getTipo()+".";
-    }
-
-    @Override
     public TipoDeNinja getTipo() {
         return TipoDeNinja.GENJUTSU;
     }
