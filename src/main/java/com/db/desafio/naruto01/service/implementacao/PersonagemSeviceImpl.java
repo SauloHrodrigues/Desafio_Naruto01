@@ -27,7 +27,6 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
             dto.jutsus().forEach((nome, dano) ->
                     novo.adicionarJutsu(nome.toLowerCase(), dano)
             );
-
         }
         Personagem salvo = repository.save(novo);
         return MAPPER.toResponse(salvo);
@@ -76,8 +75,6 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
         return MAPPER.exibirPersonagem(personagem);
     }
 
-
-
     public Personagem buscarPersonagem(Long id) {
         return repository.findById(id).orElseThrow(() -> new PersonagemNaoEncontradoException(
                 "Não há personagem cadastrado no banco com ID:'" + id + "."
@@ -88,6 +85,7 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
         Personagem personagem = buscarPersonagem(id);
         validarJutsuDoPersonagem(personagem,jutsu);
     }
+
     public void validarJutsuDoPersonagem(Personagem personagem, String jutsu){
         boolean possui = personagem.getJutsus()
                 .keySet()
