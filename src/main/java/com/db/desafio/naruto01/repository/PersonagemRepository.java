@@ -18,4 +18,6 @@ public interface PersonagemRepository extends JpaRepository<Personagem, Long> {
 
     @Query("select p from Personagem p where type(p) = NinjaDeGenjutsu")
     List<Personagem> buscarNinjasDeGenjutsu();
+
+    Personagem findByNomeIgnoreCase(String nome);
 }

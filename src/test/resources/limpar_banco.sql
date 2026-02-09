@@ -1,5 +1,4 @@
-DELETE FROM jutsus;
+DELETE FROM personagem_jutsus;
 DELETE FROM personagens;
 
-ALTER TABLE jutsus ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE personagens ALTER COLUMN id RESTART WITH 1;

@@ -25,7 +25,7 @@ public class PersonagensController implements PersonagemControllerSwaggerI {
     @PostMapping("/{id}/jutsus")
     public ResponseEntity<Void> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
         serviceI.adicionarNovoJutsu(id,novoJutsu);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping("/{id}/chakras")
