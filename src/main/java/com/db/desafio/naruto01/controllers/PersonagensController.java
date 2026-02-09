@@ -3,15 +3,17 @@ package com.db.desafio.naruto01.controllers;
 import com.db.desafio.naruto01.controllers.swagger_i.PersonagemControllerSwaggerI;
 import com.db.desafio.naruto01.dtos.*;
 import com.db.desafio.naruto01.service.PersonagemServiceI;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
+@Validated
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/personagens")
-public class PersonagensController {//implements PersonagemControllerSwaggerI {
+public class PersonagensController implements PersonagemControllerSwaggerI {
 
     private final PersonagemServiceI serviceI;
 
@@ -32,7 +34,7 @@ public class PersonagensController {//implements PersonagemControllerSwaggerI {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/{id}/atacar")
+    @GetMapping("/{id}/ataques")
     public ResponseEntity<String> usarJutsu(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.usarJutsu(id));
     }

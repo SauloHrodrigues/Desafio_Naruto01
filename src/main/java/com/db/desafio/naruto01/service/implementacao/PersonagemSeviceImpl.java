@@ -1,12 +1,16 @@
 package com.db.desafio.naruto01.service.implementacao;
 
 import com.db.desafio.naruto01.dtos.*;
+import com.db.desafio.naruto01.exceptions.ChakraInsuficentesException;
+import com.db.desafio.naruto01.exceptions.JutsuNaoEncontradoException;
 import com.db.desafio.naruto01.exceptions.PersonagemNaoEncontradoException;
 import com.db.desafio.naruto01.exceptions.TipoNaoEncontradoException;
 import com.db.desafio.naruto01.mapper.PersonagemMapper;
 import com.db.desafio.naruto01.model.*;
 import com.db.desafio.naruto01.repository.PersonagemRepository;
+import com.db.desafio.naruto01.service.JogoServiceI;
 import com.db.desafio.naruto01.service.PersonagemServiceI;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +24,10 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
     public PersonagemResponse novoPersonagem(NovoPersonagem dto) {
         Personagem novo = criar(dto);
         if (dto.jutsus() != null) {
-            dto.jutsus().forEach(novo::adicionarJutsu);
+            dto.jutsus().forEach((nome, dano) ->
+                    novo.adicionarJutsu(nome.toLowerCase(), dano)
+            );
+
         }
         Personagem salvo = repository.save(novo);
         return MAPPER.toResponse(salvo);
@@ -33,9 +40,20 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
         repository.save(personagem);
     }
 
+    @Override
     public void aumentarChakra(Long id, int chakras) {
         Personagem personagem = buscarPersonagem(id);
         personagem.aumentarChakra(chakras);
+        repository.save(personagem);
+    }
+
+    @Override
+    public void diminuirChakra(Long id, int quantidade){
+        Personagem personagem = buscarPersonagem(id);
+        if(personagem.getChakra()< quantidade){
+            throw new ChakraInsuficentesException("Não há chakras suficientes para essa ação.");
+        }
+        personagem.diminuirChakra(quantidade);
         repository.save(personagem);
     }
 
@@ -58,10 +76,27 @@ public class PersonagemSeviceImpl implements PersonagemServiceI {
         return MAPPER.exibirPersonagem(personagem);
     }
 
-    protected Personagem buscarPersonagem(Long id) {
+
+
+    public Personagem buscarPersonagem(Long id) {
         return repository.findById(id).orElseThrow(() -> new PersonagemNaoEncontradoException(
                 "Não há personagem cadastrado no banco com ID:'" + id + "."
         ));
+    }
+
+    public void validarJutsuDoPersonagem(Long id, String jutsu){
+        Personagem personagem = buscarPersonagem(id);
+        validarJutsuDoPersonagem(personagem,jutsu);
+    }
+    public void validarJutsuDoPersonagem(Personagem personagem, String jutsu){
+        boolean possui = personagem.getJutsus()
+                .keySet()
+                .stream()
+                .anyMatch(nome -> nome.equalsIgnoreCase(jutsu));
+        if(!possui){
+            throw new JutsuNaoEncontradoException("O personagem: '"+personagem.getNome()+
+                    "', não possui o jutsu: '"+jutsu+"'.");
+        }
     }
 
     protected Personagem criar(NovoPersonagem dto) {
