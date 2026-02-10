@@ -251,7 +251,56 @@ retorna o seguinte JSON:
 }
 ````
 ---
+## Funcionamento do CRUD Naruto
 
+Após criar no mínimo dois personagens, utilize o seguinte endpoint:
+
+````
+<<POST>> http://localhost:8080/jogos
+````
+insira no body o seguinte JSON:
+````json
+{
+    "ids": [1,2]
+}
+````
+O Json deve ter uma coleção de ids previamente cadastrados. O endpoint iniciará uma batalha entre os dois personagens,
+podendo ambos fazer uso dos repectivos endpoints abaixo de ataque e defesa.
+
+**ATAQUE**
+
+````
+<<POST>> http://localhost:8080/jogos/1/ataque
+````
+O numero 1 é o id do jogador de ataque, e deve carregar no body da requisição o seguinte JSON?
+````json
+{
+"idAdversario":2,
+"jutsu": "rasengan"
+}
+````
+**DEFESA**
+````
+<<GET>> http://localhost:8080/jogos/2/desvios
+````
+
+Assim como no ataque, o número 2 é o id de quem está fazendo a defesa. Caso a defesa seja bem sucedida, a API retornará 
+a seguite mensage:
+
+````
+"O personagem: " + <<Nome do personagem>> + " está desviando de um ataque usando " +
+                "sua habilidade em " + <<Tipo do ninja>> + "."
+````
+No caso de a defesa falhar, a API retornará a seguinte mensagem:
+````
+   "Defesa Infrutífera."
+````
+
+
+
+
+
+---
 ## Testes
 
 Realizei testes unitários utilizando JUnit e Mockito. Criei classes Fixitures para reutilização de código nos testes.
