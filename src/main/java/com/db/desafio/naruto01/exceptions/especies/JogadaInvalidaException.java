@@ -1,4 +1,4 @@
-package com.db.desafio.naruto01.exceptions;
+package com.db.desafio.naruto01.exceptions.especies;
 
 public class JogadaInvalidaException extends RuntimeException{
     public JogadaInvalidaException(String mensagem){

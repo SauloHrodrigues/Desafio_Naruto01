@@ -1,4 +1,4 @@
-package com.db.desafio.naruto01.exceptions;
+package com.db.desafio.naruto01.exceptions.especies;
 
 public class JutsuNaoEncontradoException extends RuntimeException{
     public JutsuNaoEncontradoException(String mensagem){

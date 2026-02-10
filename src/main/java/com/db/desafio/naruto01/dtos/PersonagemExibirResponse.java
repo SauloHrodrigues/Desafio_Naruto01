@@ -1,11 +1,9 @@
 package com.db.desafio.naruto01.dtos;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.List;
 import java.util.Map;
 
 @Schema(description = "Resposta com os dados do personagem cadastrado")

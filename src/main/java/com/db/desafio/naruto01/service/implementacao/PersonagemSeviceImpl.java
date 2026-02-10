@@ -1,16 +1,14 @@
 package com.db.desafio.naruto01.service.implementacao;
 
 import com.db.desafio.naruto01.dtos.*;
-import com.db.desafio.naruto01.exceptions.ChakraInsuficentesException;
-import com.db.desafio.naruto01.exceptions.JutsuNaoEncontradoException;
-import com.db.desafio.naruto01.exceptions.PersonagemNaoEncontradoException;
-import com.db.desafio.naruto01.exceptions.TipoNaoEncontradoException;
+import com.db.desafio.naruto01.exceptions.especies.ChakraInsuficentesException;
+import com.db.desafio.naruto01.exceptions.especies.JutsuNaoEncontradoException;
+import com.db.desafio.naruto01.exceptions.especies.PersonagemNaoEncontradoException;
+import com.db.desafio.naruto01.exceptions.especies.TipoNaoEncontradoException;
 import com.db.desafio.naruto01.mapper.PersonagemMapper;
 import com.db.desafio.naruto01.model.*;
 import com.db.desafio.naruto01.repository.PersonagemRepository;
-import com.db.desafio.naruto01.service.JogoServiceI;
 import com.db.desafio.naruto01.service.PersonagemServiceI;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

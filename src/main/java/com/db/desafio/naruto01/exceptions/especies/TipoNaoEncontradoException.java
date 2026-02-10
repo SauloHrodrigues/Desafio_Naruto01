@@ -1,6 +1,4 @@
-package com.db.desafio.naruto01.exceptions;
-
-import com.db.desafio.naruto01.enuns.TipoDeNinja;
+package com.db.desafio.naruto01.exceptions.especies;
 
 public class TipoNaoEncontradoException extends RuntimeException{
     public TipoNaoEncontradoException(String mensagem){

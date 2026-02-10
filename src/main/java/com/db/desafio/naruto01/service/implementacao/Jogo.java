@@ -1,6 +1,6 @@
 package com.db.desafio.naruto01.service.implementacao;
 
-import com.db.desafio.naruto01.exceptions.PersonagemNaoEncontradoException;
+import com.db.desafio.naruto01.exceptions.especies.PersonagemNaoEncontradoException;
 import com.db.desafio.naruto01.model.Jutsu;
 import com.db.desafio.naruto01.model.Personagem;
 import lombok.Getter;

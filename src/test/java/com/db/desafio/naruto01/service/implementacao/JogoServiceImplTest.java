@@ -2,8 +2,8 @@ package com.db.desafio.naruto01.service.implementacao;
 
 import com.db.desafio.naruto01.dtos.AtacarDeJutsuRequest;
 import com.db.desafio.naruto01.dtos.NovoJogoRequest;
-import com.db.desafio.naruto01.exceptions.JogadaInvalidaException;
-import com.db.desafio.naruto01.exceptions.JogoNaoEncontradoException;
+import com.db.desafio.naruto01.exceptions.especies.JogadaInvalidaException;
+import com.db.desafio.naruto01.exceptions.especies.JogoNaoEncontradoException;
 import com.db.desafio.naruto01.fixtures.JogoFixture;
 import com.db.desafio.naruto01.model.NinjaDeGenjutsu;
 import com.db.desafio.naruto01.model.NinjaDeTaijutsu;

@@ -18,12 +18,12 @@ public class PersonagensController implements PersonagemControllerSwaggerI {
     private final PersonagemServiceI serviceI;
 
     @PostMapping
-    public ResponseEntity<PersonagemResponse> cadastrar(@RequestBody NovoPersonagem dto){
+    public ResponseEntity<PersonagemResponse> cadastrar(@RequestBody @Valid NovoPersonagem dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(serviceI.novoPersonagem(dto));
     }
 
     @PostMapping("/{id}/jutsus")
-    public ResponseEntity<Void> adicionaJutsu(@PathVariable Long id, @RequestBody NovoJutsu novoJutsu){
+    public ResponseEntity<Void> adicionaJutsu(@PathVariable Long id, @RequestBody @Valid NovoJutsu novoJutsu){
         serviceI.adicionarNovoJutsu(id,novoJutsu);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

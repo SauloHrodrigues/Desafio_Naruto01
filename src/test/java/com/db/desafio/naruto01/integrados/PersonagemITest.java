@@ -45,6 +45,7 @@ public class PersonagemITest {
         NovoPersonagem dto = PersonagemFixture.request(TipoDeNinja.GENJUTSU);
         ResponseEntity<PersonagemResponse> resposta = template.postForEntity(
                 "/personagens", dto, PersonagemResponse.class);
+
         assertThat(resposta.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertNotNull(resposta.getBody());
         assertThat(resposta.getBody().id()).isNotNull();

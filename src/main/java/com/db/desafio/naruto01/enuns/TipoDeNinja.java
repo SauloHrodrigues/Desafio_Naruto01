@@ -1,6 +1,6 @@
 package com.db.desafio.naruto01.enuns;
 
-import com.db.desafio.naruto01.exceptions.TipoNaoEncontradoException;
+import com.db.desafio.naruto01.exceptions.especies.TipoNaoEncontradoException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.Arrays;
