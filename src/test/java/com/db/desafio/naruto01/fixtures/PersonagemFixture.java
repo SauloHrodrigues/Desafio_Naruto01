@@ -17,7 +17,7 @@ public class PersonagemFixture {
     private static final String ALDEIA = "aldeia";
     private static final int CHAKRA = 25;
     private static final int DANO_MAXIMO = 25;
-    private static final String JUTSU = "Rasengan";
+    private static final String JUTSU = "rasengan";
 
 
     public static NovoPersonagem request(TipoDeNinja tipo) {
@@ -29,13 +29,26 @@ public class PersonagemFixture {
 
     public static Personagem entity(TipoDeNinja tipo) {
         Map<String,Integer> jutsus = new HashMap<>();
-        jutsus.put(JUTSU,DANO_MAXIMO);
+        jutsus.put(JUTSU.toLowerCase(),DANO_MAXIMO);
         Personagem personagem = TIPO_NINJA(tipo);
         personagem.setId(ID);
         personagem.setNome(NOME);
         personagem.setIdade(IDADE);
         personagem.setAldeia(ALDEIA);
         personagem.adicionarJutsu(JUTSU,DANO_MAXIMO);
+        personagem.setChakra(CHAKRA);
+        return personagem;
+    }
+
+    public static Personagem entity(Long id,TipoDeNinja tipo,String jutsu, int danoMaximo) {
+        Map<String,Integer> jutsus = new HashMap<>();
+        jutsus.put(jutsu.toLowerCase(),danoMaximo);
+        Personagem personagem = TIPO_NINJA(tipo);
+        personagem.setId(id);
+        personagem.setNome(NOME);
+        personagem.setIdade(IDADE);
+        personagem.setAldeia(ALDEIA);
+        personagem.adicionarJutsu(jutsu.toLowerCase(),danoMaximo);
         personagem.setChakra(CHAKRA);
         return personagem;
     }

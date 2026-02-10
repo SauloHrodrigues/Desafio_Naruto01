@@ -27,14 +27,14 @@ public class JogoServiceImpl {
         }
     }
 
-
     public String usarJutsu(Long id, AtacarDeJutsuRequest dto){
         validaJogo();
         jogo.setAtacante(id);
         jogo.validaJogador(dto.idAdversario());
         serviceIPersonagens.validarJutsuDoPersonagem(id, dto.jutsu());
         serviceIPersonagens.diminuirChakra(id,1);
-        int danoMaximo = serviceIPersonagens.buscarPersonagem(id).getJutsus().get(dto.jutsu());
+        Personagem personagem = serviceIPersonagens.buscarPersonagem(id);
+        int danoMaximo =(int) personagem.getJutsus().get(dto.jutsu());
         jogo.gerarAtaque(id,danoMaximo,5);
         jogo.ativarDefesa();
         return serviceIPersonagens.usarJutsu(id);

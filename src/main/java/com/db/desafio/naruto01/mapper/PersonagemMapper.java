@@ -19,7 +19,6 @@ public interface PersonagemMapper {
     PersonagemMapper INSTANCE = Mappers.getMapper(PersonagemMapper.class);
 
     @Mapping(target = "jutsus", ignore = true)
-    @Mapping(target = "jogando", ignore = true)
     @Mapping(target = "nome", expression = "java(dto.nome() != null ? dto.nome().toLowerCase() : null)")
     Personagem toUpdate(@MappingTarget Personagem personagem, NovoPersonagem dto);
 
